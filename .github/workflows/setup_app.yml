@@ -1,0 +1,21 @@
+name: Sync Strava Activities from last 7 days to MotherDuck
+on: [push]
+jobs:
+  run-cron-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check out repository
+        uses: actions/checkout@v4
+      - name: set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+      - name: install uv
+        run: pip install uv
+      - name: start sync of last 7 days
+        run: uv run main_duck.py
+        env:
+          STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+          STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+          STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
+          MOTHER_DUCK_API_KEY: ${{ secrets.MOTHER_DUCK_API_KEY }}
