@@ -1,0 +1,17 @@
+[project]
+name = "wrava"
+version = "0.1.0"
+description = "Sync Strava Activities to Motherduck and show with Streamlit"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=1.4.3",
+    "requests>=2.32.5",
+    "ruff>=0.14.10",
+    "streamlit>=1.52.2",
+]
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = []
+fixable = ["ALL"]
