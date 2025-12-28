@@ -1,11 +1,15 @@
 name: Sync Strava Activities from last 7 days to MotherDuck
-on: [push]
+on:
+  schedule:
+    - cron: '42 * * * *'
 jobs:
   run-cron-job:
     runs-on: ubuntu-latest
     steps:
       - name: check out repository
         uses: actions/checkout@v4
+        with:
+          ref: main  # explicitly checkout main branch
       - name: set up python
         uses: actions/setup-python@v4
         with:
